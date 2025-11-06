@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kartu Fakta Menarik — Alkitab</title>
+  <style>
+    body{background-color: lightpink;}
+    h2{text-align: center; font-size: 40px;}
+    subtitle{font-size: 30px;}
+    li{text-align: center; font-size: 20px;}
+    img{border-radius: 25px 25px 25px 25px;}
+    div.card-fakta{
+        padding-top: 2%;
+                width:800px;
+                height: 740px;
+                background-color: rgb(198, 135, 250);
+                text-align: center;
+                border-radius: 50px;
+
+            }
+
+  </style>
+</head>
+<body>
+<center>
+  <div class="card-fakta">
+    <img id="factImage" src="alkitab.jpg" alt="Ilustrasi Alkitab"/>
+    <div class="content">
+      <h2>Fakta Menarik tentang Alkitab</h2>
+      <p class="subtitle">Tahukah kamu fakta-fakta unik ini?</p>
+
+      <ul class="facts-list" id="factList">
+        <li>Alkitab ditulis oleh lebih dari 40 orang dalam kurun waktu 1.500 tahun.</li>
+          <li>Alkitab pertama kali dicetak dengan mesin oleh Gutenberg tahun 1455.</li>
+          <li>Alkitab panjangnya sekitar 611.000 kata (dalam bahasa aslinya). </li>
+          <li>Penulisan Kitab Ibrani tetap anonim selama berabad-abad.</li>
+        </ul>
+
+      <button class="btn-next" id="nextFact">🔁 Fakta Selanjutnya</button>
+
+      <div class="card-footer">Vall - XI</div>
+    </div>
+  </div>
+</center>
+
+  <script>
+    const factData = [
+      {
+        image: "alkitab 2.jpg",
+        facts: [
+          "Alkitab adalah buku paling banyak diterjemahkan di dunia.",
+          "Kitab Esther tidak pernah menyebut nama Tuhan.",
+          "Angka tujuh sering melambangkan kesempurnaan dalam Alkitab.",
+          "Ular di Taman Eden adalah makhluk pertama yang berbicara kepada manusia."
+        ]
+      },
+      {
+        image: "alkitab 3.jpg",
+        facts: [
+          "Kata “jangan takut” muncul lebih dari 300 kali dalam Alkitab.",
+          "Alkitab disebut sebagai “firman yang hidup” karena terus relevan sepanjang masa.",
+          "Angka empat puluh sering muncul sebagai lambang ujian atau pencobaan.",
+          "Paulus menulis sebagian suratnya dari dalam penjara."
+        ]
+      },
+      {
+        image: "alkitab 4.jpg",
+        facts: [
+          "Manna di padang gurun adalah makanan misterius yang turun dari langit.",
+          "Superkomputer modern dapat melakukan triliunan perhitungan per detik.",
+          "Mazmur 119 adalah pasal terpanjang di seluruh Alkitab."
+        ]
+      },
+      {
+        image: "alkitab.jpg",
+        facts: [
+          "Alkitab ditulis oleh lebih dari 40 orang dalam kurun waktu 1.500 tahun.",
+          "Alkitab pertama kali dicetak dengan mesin oleh Gutenberg tahun 1455.",
+          "Alkitab panjangnya sekitar 611.000 kata (dalam bahasa aslinya).",
+          "Penulisan Kitab Ibrani tetap anonim selama berabad-abad."
+        ]
+      }
+    ];
+
+    const factList = document.getElementById("factList");
+    const factImage = document.getElementById("factImage");
+    const nextBtn = document.getElementById("nextFact");
+
+    nextBtn.addEventListener("click", () => {
+      factList.classList.add("fade-out");
+      setTimeout(() => {
+        const randomFact = factData[Math.floor(Math.random() * factData.length)];
+        factImage.style.opacity = 0;
+
+        setTimeout(() => {
+          factImage.src = randomFact.image;
+          factImage.style.opacity = 1;
+        }, 400);
+
+        factList.innerHTML = randomFact.facts.map(f => `<li>${f}</li>`).join("");
+        factList.classList.remove("fade-out");
+      }, 500);
+    });
+  </script>
+</body>
+</html>
